@@ -30,7 +30,7 @@ Aynı zamanda, Sonic Pi’a henüz bu başlangıç/bitiş bloğuyla ne yapacağ�
 Şu ana kadar, “play” ve “sample” blocklarıyla birçok ses çıkarabilceğimiz üzerinde çalıştık. “Sleep” komutuyla da bu sesleri tetiklenceğinizi öğrendik. 
 Gördüğünüz gibi, bu basit yapı blokları çok eğlenceli. Aynı zamanda, müzik ve bestelerinizde kodun gücünü kullanmaya başladığınızda eğlencede yeni bir boyut açılıyor. Bir sonraki bölümlerde, bu güçlü araçları keşfedeceğiz.
 
-Tekrarlama
+### Tekrarlama
 
 Hiç birden fazla tekrarlamak isteğiniz bir kod yazdınız mı? Mesela;
 ```
@@ -81,7 +81,7 @@ sleep 0.25
 
 Kod oldukça uzadı! Eğer bir kelimeyi ı :elec_plip1 e çevirmek isterseniz? Bütün orjinal kelimeyi ayrı ayrı bulmanız gerekecek. Daha önemlisi, eğer kodu 500 veya 1000 defa tekrarlamak isterseniz? Kod oldukça uzun ve büyük bir hale dönüşecek. 
 Yineleme
-Aslında kodu tekrarlamak “bunu 3 defa yap” demek kadar kolay.Eski arkadaşınız kod bloğunu hatırlıyor musunuz? Bu özel kodu 3 defa tekrarlamak için “3.times do” komutunu kullanabilir. Tekrarlamak istediğiniz kodun sonuna “end” eklemeyi unutmayın:
+Aslında kodu tekrarlamak “bunu 3 defa yap” demek kadar kolay. Eski arkadaşınız kod bloğunu hatırlıyor musunuz? Bu özel kodu 3 defa tekrarlamak için “3.times do” komutunu kullanabilir. Tekrarlamak istediğiniz kodun sonuna “end” eklemeyi unutmayın:
 
 ```
 3.times do
@@ -116,7 +116,7 @@ end
 ```
 
 
-İç içe tekrarlamalar
+### İç içe tekrarlamalar
 Şimdi, tekrarlamaların içinde de tekrarlama yaparak ilginç kod yapıları oluşturabiliriz.
 
 ```
@@ -135,7 +135,7 @@ end
 ```
 
 
-Döngüler
+### Döngüler
 If you want something to repeat a lot of times, you might find yourself using really large numbers such as 1000.times do. In this case, you’re probably better off asking Sonic Pi to repeat forever (at least until you press the stop button!). Let’s loop the amen break forever:
 
 Eğer bir şeyi birçok kez tekrarlamak isterseniz, kendinizi çok büyük sayılar kullanırken bulabilirsiniz örneğin “1000.times do.” bu durumda, Sonic Pi bunu sonsuza dek yapmaya çalışır gibi olacaktır. Amen’i sonsuz döngüye soktuğumuzda: 
@@ -161,7 +161,7 @@ sample :drum_cymbal_open
 ## 5.3 Koşul
 Kendinizi yaparken bulabileceğiniz bir diğer şey ise, sadece random bir nota çalmak değil; aynı zamanda bir kodun sonucu üzerinden random bir karar vermektir. Örneğin, rastgele davul veya zil çalabilirsiniz. Bunu bir eğer “if” komutuyla da yapabiliriz.
 
-Bozuk para atma
+### Bozuk para atma
 Hadi yazı tura atalım, yazı gelirse davul tura gelirse zil çalalım. Çok kolay! Bozuk para atmayı “one_in” fonksiyonu olarak yazalım. Bozuk para atmanın sonucunu davul veya zil çalma kararında kullanalım:
 
 ```
@@ -201,7 +201,7 @@ loop do
 end
 ```
  
-Eğer:
+###Eğer:
 Bazen, sadece bir satır kodu silmek istersiniz. Bu satırın sonuna “if” komutunun yerleştirilmesiyle mümkün olabilir. Örneğin:
 use_synth :dsaw
  
