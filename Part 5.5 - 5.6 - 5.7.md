@@ -46,11 +46,14 @@ kelimeler yaratmamızı sağlar.
 
 ## 5.6 Değişkenler
 
-A useful thing to do in your code is to create names for things. Sonic Pi makes this very easy: you write the name you wish to use, an equal sign (=), then the thing you want to remember:
+Bir şeyler için isim yaratmak, yazdığımız kod için yapabiliceğimiz kullanışlı bir şeydir. Sonic Pi bu durumu çok kolaylaştırır: kullanmak istediğin ismi yazıyorsun ve eşittir işaretini (=) koyarak hatırlamak isteğin şeyi yazıyorsun:
+
 ```
 sample_name = :loop_amenCopy
 ```
+
 Here, we’ve ‘remembered’ the symbol :loop_amen in the variable sample_name. We can now use sample_name everywhere we might have used :loop_amen. For example:
+
 ```
 sample_name = :loop_amen
 sample sample_nameCopy
@@ -58,6 +61,7 @@ sample sample_nameCopy
 There are three main reasons for using variables in Sonic Pi: communicating meaning, managing repetition and capturing the results of things.
 
 ## Communicating Meaning
+
 When you write code it’s easy to just think you’re telling the computer how to do stuff - as long as the computer understands it’s OK. However, it’s important to remember that it’s not just the computer that reads the code. Other people may read it too and try to understand what’s going on. Also, you’re likely to read your own code in the future and try to understand what’s going on. Although it might seem obvious to you now - it might not be so obvious to others or even your future self!
 
 One way to help others understand what your code is doing is to write comments (as we saw in a previous section). Another is to use meaningful variable names. Look at this code:
