@@ -14,9 +14,9 @@ Programcılara sunulan çok sayıda heyecan verici ve egzotik veri yapısı var-
 ## 8.1 - Listeler
 
 Bu bölümde çok kullanışlı bir veri yapısı olan listeleri inceleyeceğiz. Rastgele sıralama bölümünde listeden çalmak için rastgele nota seçerken kısaca listelere değinmiştik.
-`
+```
 play choose([50, 55, 62])
-`
+```
 Bu bölümde ölçek ve akorları temsil ederken kullanabiliceğimiz listeleri inceleyeceğiz. Öncelikle, nasıl akorun nasıl çalındığını tekrar edelim. Unutmayın ki eğer sleep fonksiyonunu kullanmazsak yazdığımız bütün sesler aynı anda duyulur.
 
 play 52
