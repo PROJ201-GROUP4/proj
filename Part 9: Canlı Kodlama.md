@@ -171,11 +171,68 @@ end
 Vay canına, her şey çok daha uyumlu çalıştı - hiç bir şeyi durdurmadan.
 Şimdi git ve canlı döngüler ile canlı kodla!
 
+### Tiklemek
 
+Canlı kodlama yaparken kendinizi bolca çembersel bi şekilde döngü oluştururken bulacaksınız. Melodi oluşturmak için notalarla, ritim oluşturmak için uyuma komutlarıyla, vb.
 
+#### Tikleyen Çemberler
+Sonic Pi size çemberle oluşturabilmeniz için "tik sistemi" denilen çok kullanışlı bir araç sağlıyor. Çemberler hakkında konuştuğumuz bölümde sürekli artan bir sayaçtan bahsetmiştik, tıpkı anlık vuruş sayısı gibi. Tik sistemi aynı şeyi çemberlerde yapabilmemizi sağlıyor. Aşağıdaki örneğe bir göz atalım:
+```
+counter = 0
+live_loop :arp do
+  play (scale :e3, :minor_pentatonic)[counter], release: 0.1
+  counter += 1
+  sleep 0.125
+end 
+```
+Bu kod parçası aşağıdaki ile aynı işlemi yapmaktadır:
+```
+live_loop :arp do
+  play (scale :e3, :minor_pentatonic).tick, release: 0.1
+  sleep 0.125
+end 
+```
+Burada sadece E3 minör skalasını alıyor ve her elementi sırayla çalıyoruz. Bu işlem skala belirttikten sonra ".tick" ekleyerek yapılıyor. Bu tik kullanıldığı canlı döngüye aittir, yani her canlı döngünün kendi tik'i olabilir:
+```
+live_loop :arp do
+  play (scale :e3, :minor_pentatonic).tick, release: 0.1
+  sleep 0.125
+end
 
+live_loop :arp2 do
+  use_synth :dsaw
+  play (scale :e2, :minor_pentatonic, num_octaves: 3).tick, release: 0.25
+  sleep 0.25
+end 
+```
+### Tik
+"Tick"'i aynı zamanda standart bir değer olarak kullanıp index haline getirebiliriz:
+```
+live_loop :arp do
+  idx = tick
+  play (scale :e3, :minor_pentatonic)[idx], release: 0.1
+  sleep 0.125
+end
+```
+Ancak, sonuna ".tick" komutu kullanarak tik oluşturmak daha mantıklıdır. "Tick"'i farklı bir tanınma atamak çember dışında bir şey için kullanılacağı zaman daha yararlı olmaktadır.
 
+### Bak
 
+Tick'in diğer bir muhteşem yanı ise her seferinde yeni bir değer döndürmekten de öte, her çağırıldığında "bir sonraki değeri" vermesidir. Dosyalardaki diğer "tick" örneklerine bakarak başka kullanım yöntemlerini de görebilirsin. Ancak, şimdilik önemli olan nokta bazen anlık "tick" değerini görmek istememiz ve bunun için "look" komutunu kullanabilmemiz. Bunu başka bir değere look atayarak ya da çemberin sonuna ".look" ekleyerek sağlayabiliriz.
+
+### Tikleri İsimlendirmek
+
+Bazen bazı döngülerde birden fazla "tick"e ihtiyacın olabilir, bu durumlarda tick'lerine farklı isimler vermelisin:
+```
+live_loop :arp do
+  play (scale :e3, :minor_pentatonic).tick(:foo), release: 0.1
+  sleep (ring 0.125, 0.25).tick(:bar)
+end 
+```
+Yukarıda verilen kod parçasında birden fazla tick komutumuz var ve bunların düzgün çalışabilmesi için bu komutlara farklı isimler vererek birbirinden bağımsız hale getirmemiz gerekiyor.
+
+#### Fazla Karmaşıklaştırmayın
+Tik sisteminin çoğu gücü kullanmaya yeni başladığınızda pek işinize yaramaz. Her şeyi bu bölümde deneyip öğrenmeye çalışmayın. Sadece tek bir çemberde tik sistemini kullanmaya yoğunlaşın. Bu size yeterli eğlenceyi ve tik sistemini kullanmanın kolaylığını anlamanızı sağlayacaktır.
 
 
 
