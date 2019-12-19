@@ -281,23 +281,24 @@ dersiniz?
 Yukarda sadece komutları kullanarak yeni bir zincirler yarattık.Bu şekilde hiç yoktan ringler elde edebiliriz.
 
 Değişmezlik
-This means you’re free to share rings across threads and start chaining them within a thread knowing you won’t be affecting any other thread using the same ring.
+
 Bu ringlerin güçlü ve önemli birtakım özellikleri var. Değişmezlik özellikleri vardır. Bu bu bölümde öğrendiğimiz zincir methodları ringleri değiştirmez
-onun yerine yeni ringler yarattır.
+onun yerine yeni ringler yarattır. Bu threadler boyunca ring paylaşmada özgür olma ve başka bir thread`i etkilemeden aynı ringi kullanarak onları threadle zincirleyebilme
+özgürlüğüne sahip oladuğu anlamına gelir.
 
 Sonic Pi`da bulunan Zincir Methodları
 
 Çalabiliceğiniz zincir methodlarına örnekler;
 
-.reverse - returns a reversed version of the ring
-.sort - creates a sorted version of the ring
-.shuffle - creates a shuffled version of the ring
-.pick(3) - returns a ring with the results of calling .choose 3 times
-.pick - similar to .pick(3) only the size defaults to the same as the original ring
-.take(5) - returns a new ring containing only the first 5 elements
-.drop(3) - returns a new ring with everything but the first 3 elements
-.butlast - returns a new ring with the last element missing
-.drop_last(3) - returns a new ring with the last 3 elements missing
+.reverse - bir ringin tersini verir
+.sort - sıralanmış bir ring yaratır
+.shuffle - değerlerin yer değiştirdiği bir ring yaratır
+.pick(3) - .choose u 3 kere çağırarak ortaya çıkan bir ring döndürür
+.pick - .pick(3)ye benzerdir sadece olağan hali orjinal ringle aynı olmalıdır
+.take(5) - sadece ilk 5 elemanı içeren yeni bir ring döndürür
+.drop(3) - ilk 3 eleman hariç bütün elemanları bulunduran yeni bir ring döndürür
+.butlast - son elemanı çıkararak yeni bir ring döndürür
+.drop_last(3) - son 3 elemanı çıkararak yeni bir ring döndürür 
 .take_last(6)- returns a new ring with only the last 6 elements
 .stretch(2) - repeats each element in the ring twice
 .repeat(3) - repeats the entire ring 3 times
