@@ -1,21 +1,22 @@
-### 12-OSC
-12-OSC
+
+# 12-OSC
 
 In addition to MIDI, another way to get information in and out of Sonic Pi is via the network using a simple protocol called OSC - Open Sound Control. This will let you send messages to and from external programs (both running on your computer and on external computers) which opens up the potential for control way beyond MIDI which has limitations due to its 1980s design.
 
 For example, you could write a program in another programming language which sends and receives OSC (there are OSC libraries for pretty much every common language) and work directly with Sonic Pi. What you can use this for is only limited by your imagination.
 
-12.1 - Receiving OSC
+## 12.1 - Receiving OSC
 By default when Sonic Pi is launched it listens to port 4559 for incoming OSC messages from programs on the same computer. This means that without any configuration, you can send Sonic Pi an OSC message and it will be displayed in the cue log just like incoming MIDI messages. This also means that any incoming OSC message is also automatically added to the Time State which means you can also use get and sync to work with the incoming data - just like with MIDI and synchronising live_loops - see sections 5.7 and 10.2 to recap how this works.
 
-A Basic OSC Listener
+### A Basic OSC Listener
 Let’s build a basic OSC listener:
-
+```
 live_loop :foo do
   use_real_time
   a, b, c = sync "/osc/trigger/prophet"
   synth :prophet, note: a, cutoff: b, sustain: c
 endCopy
+```
 In this example we described an OSC path "/osc/trigger/prophet" which we’re syncing on. This can be any valid OSC path (all letters and numbers are supported and the / is used like in a URL to break up the path to multiple words). The /osc prefix is added by Sonic Pi to all incoming OSC messages, so we need to send an OSC message with the path /trigger/prophet for our sync to stop blocking and the prophet synth to be triggered.
 
 Sending OSC to Sonic Pi
