@@ -1,11 +1,11 @@
-5.5 Fonksiyonlar
+## 5.5 Fonksiyonlar
 
 Kod yazmaya başladığınız zaman, yazdığınız kodları daha toplu ve anlaşılılabilir yazmak için yollar arasınız. 
 Fonksiyonlar bu konuda size yardımcı olacak çok güçlü bir yoldur. Fonksiyonlar elimizdeki bir grup koda isim vermemizi sağlar.
 Haydi fonksiyonları inceleyelim.
 
 
-Fonksiyonları Tanımlamak:
+### Fonksiyonları Tanımlamak:
 
 define :foo do
   play 50
