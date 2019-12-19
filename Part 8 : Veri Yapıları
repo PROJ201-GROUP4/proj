@@ -299,13 +299,12 @@ Sonic Pi`da bulunan Zincir Methodları
 .drop(3) - ilk 3 eleman hariç bütün elemanları bulunduran yeni bir ring döndürür
 .butlast - son elemanı çıkararak yeni bir ring döndürür
 .drop_last(3) - son 3 elemanı çıkararak yeni bir ring döndürür 
-.take_last(6)- returns a new ring with only the last 6 elements
-.stretch(2) - repeats each element in the ring twice
-.repeat(3) - repeats the entire ring 3 times
-.mirror - adds the ring to a reversed version of itself
-.reflect - same as mirror but doesn’t duplicate middle value
-.scale(2) - returns a new ring with all elements multiplied by 2 (assumes ring contains numbers only)
+.take_last(6)- sadece son 6 elemanın olduğu yeni bir ring döndürür
+.stretch(2) - ringteki her elemanı iki kere tekrar eder
+.repeat(3) - bütün ringi 3 kere tekrar eder
+.mirror - ringin ters halini ringin kendisine ekler 
+.reflect - mirror gibidir fakat ortanca değeri tekrarlamaz 
+.scale(2) - bütün elemanları 2 ile çarparak yeni bir ring döndürür
 
-Of course, those chain methods that take numbers can take other numbers too! So feel free to call .drop(5) instead of .drop(3) if you want to drop the first 5 elements.
 
 
