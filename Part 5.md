@@ -26,7 +26,7 @@ do
 End
 Aynı zamanda, Sonic Pi’a henüz bu başlangıç/bitiş bloğuyla ne yapacağımızı söylemedğimiz için işimizi tamamlamadık, denerseniz hata alacaksınız. Sonic Pi’a do komutundan önce özel bir kod yazacağız ve bu özel kodun bu eğitici yazıda kaç tane olduğunu göreceğiz. Şimdilik, “do” ve “end” komutlarının kod yığınına özel bir işlem yapacağıı bilmek önemli olduğunu bilelim.
 
-5.2 Iteration and Loops
+## 5.2 Iteration and Loops
 Şu ana kadar, “play” ve “sample” blocklarıyla birçok ses çıkarabilceğimiz üzerinde çalıştık. “Sleep” komutuyla da bu sesleri tetiklenceğinizi öğrendik. 
 Gördüğünüz gibi, bu basit yapı blokları çok eğlenceli. Aynı zamanda, müzik ve bestelerinizde kodun gücünü kullanmaya başladığınızda eğlencede yeni bir boyut açılıyor. Bir sonraki bölümlerde, bu güçlü araçları keşfedeceğiz.
 
@@ -215,7 +215,7 @@ End
 ```
  
 
-5.4 - Threadler
+## 5.4 - Threadler
 Şimdi, bas ile ritimin aynı anda çalmasını istiyorsunuz. Bunları nasıl aynı anda çalarsınız? İlk çözüm, manuel biçimde ikisini çalıştırmak. Aynı zamanda birçok elemanla bunu yaptığınızda bunu zamanlamak çok zor olabilir. Peki ya Sonic Pi otomatik bir şekilde bu ikisini çalabilirse? Thread denilen özel komutla bunu yapabilirsiniz.
 Sonsuz Döngüler
  
