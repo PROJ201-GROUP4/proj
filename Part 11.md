@@ -31,9 +31,27 @@ Harici MIDI’dan Sonic Pi’a bilgi almak için öncelikle onu bilgisayara bağ
 /midi/nanokey2_keyboard/0/1/note_off  [55, 64]
 ```
 
-Bu bağlamayı başardınız demektir.
+Bu mesaj bağlamayı başardınız demektir.
 
 ### MIDI Zaman Durumu
+Bu olay ikiye ayrılıyor. Önce olayın adını şöyle görmelisiniz. /midi/nanokey2_keyboard/0/1/note_on . İkincisi olayların değerlerini şöyle : [18, 62]. İlginç bir şekilde bunlar zaman durumunda depolamamız gereken iki değer. Sonic pi otomatik olarak gelen MIDI olaylarını zaman durumuna alır. Yani, sonuncu MIDI değerini alabilirsiniz ve bir sonraki MIDI değerini syncleyebilirsiniz.
+
+
+### Kontrol Kodu
+MIDI ı bağladık. şimdi eğlenceli bölüme başlıyoruz. Hadi basit bir MIDI piyanosuna bakalım:
+
+```
+live_loop :midi_piano do
+  note, velocity = sync "/midi/nanokey2_keyboard/0/1/note_on"
+  synth :piano, note: note
+end
+```
+
+Aşağıda bir takım problemler var. Öncelikle, basit bir sonsuz bir live_döngümüz var.
+
+
+
+
 
 
 
