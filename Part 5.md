@@ -157,7 +157,8 @@ end
 ```
 
 sample :drum_cymbal_open
-Koşul
+
+## 5.3 Koşul
 Kendinizi yaparken bulabileceğiniz bir diğer şey ise, sadece random bir nota çalmak değil; aynı zamanda bir kodun sonucu üzerinden random bir karar vermektir. Örneğin, rastgele davul veya zil çalabilirsiniz. Bunu bir eğer “if” komutuyla da yapabiliriz.
 
 Bozuk para atma
