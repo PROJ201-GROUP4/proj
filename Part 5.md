@@ -277,7 +277,7 @@ play 50
 
 İkinci ses diğerlerinden farklı fark ettiniz mi? Use_synth komutu sadece threadin olduğu kodu etkiledi.
  
-Kapsam
+### Kapsam
 In_thread ile yeni bir thread yarattığınızda, yenisi otomatik olarak mevcut olan ayarlara sahip olacaktır. Bakalım:
 
 ```
