@@ -1,4 +1,4 @@
-#8 – Veri Yapıları
+# 8 – Veri Yapıları
 
 Veri yapısı bir programcının alet takımında bulunan çok faydalı bir araçtır.
 
@@ -11,7 +11,7 @@ Programcılara sunulan çok sayıda heyecan verici ve egzotik veri yapısı var-
 
 
 
-##8.1 - Listeler
+## 8.1 - Listeler
 
 Bu bölümde çok kullanışlı bir veri yapısı olan listeleri inceleyeceğiz. Rastgele sıralama bölümünde listeden çalmak için rastgele nota seçerken kısaca listelere değinmiştik.
 
@@ -28,7 +28,7 @@ Bu kodu yazabiliceğimiz başka yollar da var. Şimdi onlara göz atalım.
 
 
 
-###Bir Listeyi Oynatmak:
+### Bir Listeyi Oynatmak:
 
 Bütün notaları bir listenin içine yerleştirebiliriz: [52, 55, 59]. Daha sonrasında bu listenin başına play fonksiyonunu yazmamız yeterlidir.
 
@@ -46,7 +46,7 @@ play [:E3, :G3, :B3]
 
 
 
-###Bir Listeye Erişmek:
+### Bir Listeye Erişmek:
 
 Listelerin bir diğer kullanışlı özelliği ise içerisinden bilgiyi alabilmemizdir. Bu kullağınıza biraz garip gelebilir ama aslında birinin size kitaptan 23. sayfayı açmanızı söylemesiyle aynıdır. Listelerde 23. indekste bulunan elemanın ne olduğunu öğrenebilirisiniz. Tek garip kısmı programlamada listelerin 1 yerine 0 ile başlamasıdır.
 
@@ -64,7 +64,7 @@ puts [52, 55, 59][1]
 
 Eğer daha önce böyle bir şey görmediyseniz bu size biraz garip gelebilir. Ama bana güvenin görüldüğü kadar zor değil. Yukardaki satır üç parçadan oluşmaktadır : puts kelimesi ; 52, 55 ve 59`dan oluşan liste ve indeks [1].Öncellikle  Sonic Pi`yın sistemde cevabı yazdırmasını istediğimiz için puts kullanıyoruz. Daha sonra listeyi yazıyoruz ve son olarak yazdığımız indeks ile ikinci elemanının ne olduğunu soruyoruz. İndeksi köşeli parantez içine yazmamız lazım çünkü sayma işlemi 0`dan başlıyor,örneğin  ikinci eleman için olan indeks 1`dir.
 
-# indexes:  0   1   2
+#indexes:  0   1   2
            [52, 55, 59]
 
 
@@ -73,7 +73,7 @@ puts [52, 55, 59] [1] kodunu çalıştırmayı deneyin, sonucun 55 olduğunu gö
 
 
 
-##8.2 - Akorlar
+## 8.2 - Akorlar
 
 Sonic Pi akor isimlerini içinde barındırır ve bu akorları liste olarak döndürür.
 
@@ -89,7 +89,7 @@ Bu normal listelerden daha hoş görünüyor ( ve bazı insanlar için okunması
 
 
 
-###Arpej:
+### Arpej:
 
 play_pattern fonksiyonunu kullanarak akorları kolayca arpeje çevirebiliriz.
 
@@ -127,7 +127,7 @@ Hangi şekilde yazmayı tercih edersiniz?
 
 
 
-##8.3 - Ölçekler
+## 8.3 - Ölçekler
 
 Sonic Pi bize çok geniş bir ölçek aralığı sunar. C3 major ölçeğini çalmaya ne dersiniz?
 
@@ -145,7 +145,7 @@ play_pattern_timed (scale :c3, :major_pentatonic, num_octaves: 3), 0.125,
   release: 0.1
 
 
-###Random notalar:
+###  Random notalar:
 
 Akorlar ve ölçekler, random bir seçeneği anlamlı bir hale getirmek için çok güzel yoldur.
 
@@ -159,11 +159,11 @@ end
 Akor isimlerini ve kesme aralığını değiştirmeyi deneyin.
 
 
-###Akorları ve Ölçekleri Keşfetmek
+### Akorları ve Ölçekleri Keşfetmek
 
 Sonic Pi`yın sitesinde  hangi ölçek ve akorları içinde barındırdığını bulabilirsiniz.
 
-##8.4 - Rings
+## 8.4 - Rings
 
 Standart listelerin bir diğer ilginç özelliği ringlerdir. Önceden programlama dili öğrendiyseniz ring buffers ve ring arrays kavramlarıyla 
 karşılaşmışsınızdır. Biz kısaca bunlardan ringler olarak bahsedeceğiz.
@@ -195,7 +195,7 @@ ringlerin ortaya çıktığı yer.
 
 
 
-###Ring Yaratmak
+### Ring Yaratmak
 
 İki şekilde ring yaratabiliriz. Ring fonksiyonu ile beraber ringin elemanları olucak sayıları parametre olarak alabilirirz.
 
@@ -206,7 +206,7 @@ Ya da bir listenin sonuna .ring ekleyerek o listeyi bir ringe çevirebiliriz.
 [52, 55, 59].ring
 
 
-###Ringleri İndeksleme
+### Ringleri İndeksleme
 
 Elinizde bir ringiniz varsa bunu listeyei kullandığınız gibi kullanabilirsiniz. Tek farkı indeksleme olayıdır. Ringin büyüklüğüne bağlı kalmak 
 zorunda değilsiniz. İsterseniz büyüklüğünden daha büyük indeksler yazabilirsiniz isterseniz negatif indeksler yazabilirsiniz. Bütün indeksler
@@ -220,20 +220,20 @@ size ringten bir eleman vericektir.
 
 
 
-###Ringleri Kullanma
+### Ringleri Kullanma
 
 Hali hazırdaki vuruşun numarasını göstermek için değişkenleri kullanıyoruz. Onun dışında ringlerin içinden notayı almak için ya da bunun gibi
 kullanışlı olan bir şey yapmak için indeks kullanabiliriz.
 
 
 
-###Ölçek ve Akorlar de Ringtir
+### Ölçek ve Akorlar de Ringtir
 
 Bilmemiz gereken bir diğer önemli şey ise ölçek ve akorları sunan listelerin birer ring olmasıdır. İndeks kullanarak bu listelerin içindeki
 ölçek ve akorlara ulaşabilirsiniz.
 
 
-###Ring Yapıcılar
+### Ring Yapıcılar
 
 ring fonksiyonu dışında da bize ring inşa edebilicek fonksiyonlar var.
 
@@ -242,12 +242,12 @@ ring fonksiyonu dışında da bize ring inşa edebilicek fonksiyonlar var.
 ->knit tekrarlanan değerler dizisini birbiri ardına bağlamanızı sağlar.
 ->spread Euclidean dağılımıyla bool ringleri yaratır.
 
-##8.5 - Ring Zincirleri
+## 8.5 - Ring Zincirleri
 
 ring ve spread gibi yapıcılar dışında yeni bir ring oluşturmanın diğer bir yolu ise elimizde bulunan ringleri kullanarak yeni bir ring oluşturmaktır.
 
 
-###Zincir Komutları
+### Zincir Komutları
 
 Bu komutları keşfetmek için aşağıdaki basit ring`i ele alalım.
 
@@ -266,7 +266,7 @@ Son olarak, peki ya ring içindeki elemanların rastgele yerlerini değiştirmek
 (ring 10, 20, 30, 40, 50).shuffle  #=> (ring 40, 30, 10, 50, 20)
 
 
-###Çoklu Zincirler
+### Çoklu Zincirler
 
 Yeni ring yaratmak için çok güçlü bir yoldur. Ama asıl gücü zincire birkaç tane komut eklendiğinde gelir.
 
@@ -280,13 +280,13 @@ dersiniz?
 
 Yukarda sadece komutları kullanarak yeni bir zincirler yarattık.Bu şekilde hiç yoktan ringler elde edebiliriz.
 
-###Değişmezlik
+### Değişmezlik
 
 Bu ringlerin güçlü ve önemli birtakım özellikleri var. Değişmezlik özellikleri vardır. Bu bu bölümde öğrendiğimiz zincir methodları ringleri değiştirmez
 onun yerine yeni ringler yarattır. Bu threadler boyunca ring paylaşmada özgür olma ve başka bir thread`i etkilemeden aynı ringi kullanarak onları threadle zincirleyebilme
 özgürlüğüne sahip oladuğu anlamına gelir.
 
-###Sonic Pi`da bulunan Zincir Methodları
+### Sonic Pi`da bulunan Zincir Methodları
 
 Çalabiliceğiniz zincir methodlarına örnekler;
 
