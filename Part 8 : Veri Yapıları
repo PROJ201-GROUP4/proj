@@ -222,19 +222,89 @@ size ringten bir eleman vericektir.
 
 Ringleri Kullanma
 
+Hali hazırdaki vuruşun numarasını göstermek için değişkenleri kullanıyoruz. Onun dışında ringlerin içinden notayı almak için ya da bunun gibi
+kullanışlı olan bir şey yapmak için indeks kullanabiliriz.
 
 
-Scales and Chords are Rings
-	
-Ring Constructors
 
-8.5 - Ring Chains
+Ölçek ve Akorlar de Ringtir
 
-Chain Commands
+Bilmemiz gereken bir diğer önemli şey ise ölçek ve akorları sunan listelerin birer ring olmasıdır. İndeks kullanarak bu listelerin içindeki
+ölçek ve akorlara ulaşabilirsiniz.
 
-Multiple Chains
 
-Immutability
+Ring Yapıcılar
 
-Available Chain Methods
+ring fonksiyonu dışında da bize ring inşa edebilicek fonksiyonlar var.
+
+->range sizi başlangıç ve bitiş noktasını ve adım ölçüsünü belirlemeye davet eder.
+->bools 1`leri ve 0`ları kullanarak kısa ve öz bir şekilde boolean kullanımını sağlar.
+->knit tekrarlanan değerler dizisini birbiri ardına bağlamanızı sağlar.
+->spread Euclidean dağılımıyla bool ringleri yaratır.
+
+8.5 - Ring Zincirleri
+
+ring ve spread gibi yapıcılar dışında yeni bir ring oluşturmanın diğer bir yolu ise elimizde bulunan ringleri kullanarak yeni bir ring oluşturmaktır.
+
+
+Zincir Komutları
+
+Bu komutları keşfetmek için aşağıdaki basit ring`i ele alalım.
+
+(ring 10, 20, 30, 40, 50)
+
+Peki ya bu ringi ters çevirmek istiyorsak ne yapmalıyız? Bir zincir komutu olan .reverse`ü ringin sonuna ekleyerek ringi tersten okuyabiliriz.
+
+(ring 10, 20, 30, 40, 50).reverse  #=> (ring 50, 40, 30, 20, 10)
+
+Peki ya ringteki ilk üç değeri istiyorsak?
+
+(ring 10, 20, 30, 40, 50).take(3)  #=> (ring 10, 20, 30)
+
+Son olarak, peki ya ring içindeki elemanların rastgele yerlerini değiştirmek istiyorsak?
+
+(ring 10, 20, 30, 40, 50).shuffle  #=> (ring 40, 30, 10, 50, 20)
+
+
+Çoklu Zincirler
+
+Yeni ring yaratmak için çok güçlü bir yoldur. Ama asıl gücü zincire birkaç tane komut eklendiğinde gelir.
+
+Ringin içindeki elemanların yerlerini değiştirmeye sonra bir tanesini ringten çıkarmaya ve son olarak  3 elemanla yeni bir ring kurmaya ne 
+dersiniz?
+
+(ring 10, 20, 30, 40, 50) - ilk ringimiz
+(ring 10, 20, 30, 40, 50).shuffle - yer değiştirir - (ring 40, 30, 10, 50, 20)
+(ring 10, 20, 30, 40, 50).shuffle.drop(1) - ilk elemanı ringten çıkarır - (ring 30, 10, 50, 20)
+(ring 10, 20, 30, 40, 50).shuffle.drop(1).take(3) - ilk üç elemanla yeni ring oluşturur- (ring 30, 10, 50)
+
+Yukarda sadece komutları kullanarak yeni bir zincirler yarattık.Bu şekilde hiç yoktan ringler elde edebiliriz.
+
+Değişmezlik
+This means you’re free to share rings across threads and start chaining them within a thread knowing you won’t be affecting any other thread using the same ring.
+Bu ringlerin güçlü ve önemli birtakım özellikleri var. Değişmezlik özellikleri vardır. Bu bu bölümde öğrendiğimiz zincir methodları ringleri değiştirmez
+onun yerine yeni ringler yarattır.
+
+Sonic Pi`da bulunan Zincir Methodları
+
+Çalabiliceğiniz zincir methodlarına örnekler;
+
+.reverse - returns a reversed version of the ring
+.sort - creates a sorted version of the ring
+.shuffle - creates a shuffled version of the ring
+.pick(3) - returns a ring with the results of calling .choose 3 times
+.pick - similar to .pick(3) only the size defaults to the same as the original ring
+.take(5) - returns a new ring containing only the first 5 elements
+.drop(3) - returns a new ring with everything but the first 3 elements
+.butlast - returns a new ring with the last element missing
+.drop_last(3) - returns a new ring with the last 3 elements missing
+.take_last(6)- returns a new ring with only the last 6 elements
+.stretch(2) - repeats each element in the ring twice
+.repeat(3) - repeats the entire ring 3 times
+.mirror - adds the ring to a reversed version of itself
+.reflect - same as mirror but doesn’t duplicate middle value
+.scale(2) - returns a new ring with all elements multiplied by 2 (assumes ring contains numbers only)
+
+Of course, those chain methods that take numbers can take other numbers too! So feel free to call .drop(5) instead of .drop(3) if you want to drop the first 5 elements.
+
 
