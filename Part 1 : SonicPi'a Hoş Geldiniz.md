@@ -1,7 +1,7 @@
  # 1.1 – Kodlamaya Başlamak
  ## SonicPi uygulamasının en heyecan verici kısmı kendi kodunuzu yazarken aynı zamanda da kendi müziğinizi yapmanızdır. Hazırsanız başlayalım.
 
-##Hadi başlayalım, aşağıdaki kodu kopyalayıp boş alana yapıştır.
+## Hadi başlayalım, aşağıdaki kodu kopyalayıp boş alana yapıştır.
 '''
 live_loop :flibble do
   sample :bd_haus, rate: 1
@@ -11,6 +11,7 @@ live_loop :flibble do
   sample :bd_haus, rate: 1
   sleep 0.5
 end
+
 '''
 
 ## Şimdi ‘’Run’’ butonunu basarak kodu çalıştır. Unutma ne zaman kodu durdurmak istersen ‘’Stop’’ butonuna basabilirsin. Ama şimdilik basma, onun yerine aşağıdaki adımları izle :
