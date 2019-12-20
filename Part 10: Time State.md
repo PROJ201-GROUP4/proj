@@ -158,28 +158,28 @@ Pathlerle çalışmaya başladığınızda Sonic Pi’ın sofistike model eşle�
 sync "/*/*/*"
 ```
 Bu kod, isimlerinden bağımsız olarak 3 parçalı herhangi bir path argümanını kabul edecektir. Mesela:
-•	cue "/foo/bar/baz"
-•	cue "/foo/baz/quux"
-•	cue "/eggs/beans/toast"
-•	cue "/moog/synths/rule"
+- cue "/foo/bar/baz"
+- cue "/foo/baz/quux"
+- cue "/eggs/beans/toast"
+- cue "/moog/synths/rule"
 
 Fakat daha fazla veya az parçalı pathler kale alınmayacaktır. Bunlar aramamızla örtüşmeyecektir:
-•	cue "/foo/bar"
-•	cue "/foo/baz/quux/quaax"
-•	cue "/eggs"
+- cue "/foo/bar"
+-	cue "/foo/baz/quux/quaax"
+-	cue "/eggs"
 
 Her \* , herhangi bir içeriğe tekabül eder. Tek parçalı pathleri /\* şeklinde veya 5 parçalıları /\*/\*/\*/\*/\* şeklinde eşleştirebiliriz.
 
 ### Kısmi parçaları eşleştirme
 Eğer path’in bir parçasının adının nasıl başladığını veyabittiğini biliyorsak, bildiğimiz kısma ek olarak * kullanıp bulunmasını sağlayabiliriz. Misal: *"/foo/b\*/baz"* komutu ilk parçası foo, üçüncüsü baz ve ikincisi ise b ile başlayan herhangi bir path ile örtüşecektir. Yani bunlarla örtüşebilir:
-•	cue "/foo/bar/baz"
-•	cue "/foo/baz/baz"
-•	cue "/foo/beans/baz"
+-	cue "/foo/bar/baz"
+-	cue "/foo/baz/baz"
+-	cue "/foo/beans/baz"
 
 Fakat bunlarla uyuşmaz:
-•	cue "/foo/flibble/baz"
-•	cue "/foo/abaz/baz"
-•	cue "/foo/beans/baz/eggs"
+-	cue "/foo/flibble/baz"
+-	cue "/foo/abaz/baz"
+-	cue "/foo/beans/baz/eggs"
 
 Aynı şekilde \* başa da konulabilir, böylece bitişi bilinen bir path de aranılabilir. Örnek: 
 ```ruby
@@ -188,36 +188,36 @@ Aynı şekilde \* başa da konulabilir, böylece bitişi bilinen bir path de ara
 
 ### İç içe gecik path parçaları eşleştirme
 Bazen path’in kaç parçadan oluştuğunu bilmiyor olabiliriz. Bu durumda oldukça güçlü çift yıldızdan faydalanabiliriz: \*\* , şu şekilde: "/foo/\*\*/baz" Bu ise bunlarla eşleşir:
-•	cue "/foo/bar/baz"
-•	cue "/foo/bar/beans/baz"
-•	cue "/foo/baz"
-•	cue "/foo/a/b/c/d/e/f/baz"
+-	cue "/foo/bar/baz"
+-	cue "/foo/bar/beans/baz"
+-	cue "/foo/baz"
+-	cue "/foo/a/b/c/d/e/f/baz"
 
 ### Tek harf eşleştirme
 ? karakterini kullanarak bilinmeyen tek bir karakterin eşleşmesini sağlayabilirsiniz. "/?oo/bar/baz" bunlarla eşleşecektir:
-•	cue "/foo/bar/baz"
-•	cue "/goo/bar/baz"
-•	cue "/too/bar/baz"
-•	cue "/woo/bar/baz"
+-	cue "/foo/bar/baz"
+-	cue "/goo/bar/baz"
+-	cue "/too/bar/baz"
+-	cue "/woo/bar/baz"
 
 ### Çoklu kelime eşleştirme
 Bir kısmın birkaç alternatif kelimeden biri olacağını biliyor iseniz, { ve } semboller arasında bu seçenekleri listeleyebilirsiniz. "/foo/{bar,beans,eggs}/quux" yalnızca bu üçüyle eşleşir:
-•	cue "/foo/bar/quux"
-•	cue "/foo/beans/quux"
-•	cue "/foo/eggs/quux"
+-	cue "/foo/bar/quux"
+-	cue "/foo/beans/quux"
+-	cue "/foo/eggs/quux"
 
 ### Birden çok harf eşleştirme
 Son olarak, birkaç harften birisiyle eşleştirmek istediğiniz kısma harf listesini [ ve ] semboller arasında belirtebilirsiniz. "/foo/[abc]ux/baz" yalnızca bunlarla eşleşir:
-•	cue "/foo/aux/baz"
-•	cue "/foo/bux/baz"
-•	cue "/foo/cux/baz"
+-	cue "/foo/aux/baz"
+-	cue "/foo/bux/baz"
+-	cue "/foo/cux/baz"
 
 Ayrıca – karakteri ile bir harf aralığı da belirleyebilirsiniz. "/foo/[a-e]ux/baz" yalnızca bunlarla eşleşir:
-•	cue "/foo/aux/baz"
-•	cue "/foo/bux/baz"
-•	cue "/foo/cux/baz"
-•	cue "/foo/dux/baz"
-•	cue "/foo/eux/baz"
+-	cue "/foo/aux/baz"
+-	cue "/foo/bux/baz"
+-	cue "/foo/cux/baz"
+-	cue "/foo/dux/baz"
+-	cue "/foo/eux/baz"
 
 ### Eşleştiricileri birlikte kullanma
 sync veya get kullanırken yukarıdakileri istediğiniz gibi birleştirmekte özgürsünüz. Çılgın bir örnek inceleyelim:
