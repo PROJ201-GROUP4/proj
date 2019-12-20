@@ -62,7 +62,7 @@ Sonic Pi da değişkenleri kullanmamızın üç temel sebebi var: iletişimin an
 
 ## İletişimin Anlamı
 
-Kod yazdığınız zaman bilgisayara bir şeyleri nasıl yapması gerektiğini söylemeyi düşünmek kolaydır. ( Bilgisayar anladığı sürece sıkıntı yok.) Ama kodu okuyanın sadece bilgisayar olmadığını hatırlamamız gerekiyor. İnsanlarda bu kodu okuyabilir ve kodun niye yazıldığını anlamaya çalışabilir. Ayrıca sizde yazdığınız kodu daha sonradan tekrar okumak isteyebilirsiniz ve kodu hangi amaçla yazdığınızı anlamak isteyebilirsiniz. Size kodun amacı çok bariz gelse bile diğer insanlar için hatta ilerideki siz için bilr kafa karıştırıcı olabilir.
+Kod yazdığınız zaman bilgisayara bir şeyleri nasıl yapması gerektiğini söylemeyi düşünmek kolaydır. ( Bilgisayar anladığı sürece sıkıntı yok.) Ama kodu okuyanın sadece bilgisayar olmadığını hatırlamamız gerekiyor. İnsanlarda bu kodu okuyabilir ve kodun niye yazıldığını anlamaya çalışabilir. Ayrıca sizde yazdığınız kodu daha sonradan tekrar okumak isteyebilirsiniz ve kodu hangi amaçla yazdığınızı anlamak isteyebilirsiniz. Size kodun amacı çok bariz gelse bile diğer insanlar için hatta ilerideki siz için bile kafa karıştırıcı olabilir.
 
 Başkalarının okurken kodunuzu anlamasını sağlayacak bir diğer yöntem ise yorum yazmak. Diğer bir yöntem ise anlamlı değişken isimleri kullanmak. Şu örneğe bir bakın:`
 ```
@@ -90,9 +90,11 @@ sleep sample_duration(:loop_amen, rate: 0.5)
 sample :loop_amen
 sleep sample_duration(:loop_amen)Copy
 ```
-We’re doing a lot of things with :loop_amen! What if we wanted to hear what it sounded like with another loop sample such as :loop_garzul? We’d have to find and replace all :loop_amens with :loop_garzul. That might be fine if you have lots of time - but what if you’re performing on stage? Sometimes you don’t have the luxury of time - especially if you want to keep people dancing.
 
-What if you’d written your code like this:
+:loop_amen ile çok fazla şey yapıyoruz. Peki ya başka bir sample la yazdığımız kodun nasıl duyulduğunu merak edersek? Mesela :loop_amen yerine :loop_garzul kullanmak istersek? :loop_amenin olduğu bütün yerleri bulup :loop_garzulla değiştirmemiz gerekir. Eğer çok fazla vaktiniz varsa bu yöntemle yapabilirsiniz ama ya bir sahnede performans gösteriyorsanız? Bazen zaman lüksünüz olmayabilir özellikle insanların dans etmeye devam etmesini istiyorsanız.
+
+
+Peki ya kodu bu şeklide yazsanız:
 ```
 sample_name = :loop_amen
 sample sample_name
@@ -102,28 +104,34 @@ sleep sample_duration(sample_name, rate: 0.5)
 sample sample_name
 sleep sample_duration(sample_name)Copy
 ```
-Now, that does exactly the same as above (try it). It also gives us the ability to just change one line sample_name = :loop_amen to sample_name = :loop_garzul and we change it in many places through the magic of variables.
 
-### Capturing Results
-Finally, a good motivation for using variables is to capture the results of things. For example, you may wish to do things with the duration of a sample:
+Gördüğünüz gibi yukarıdaki kodla aynı sesi çıkarıyor. Hatta  sadece bir satırı değiştirerek :loop_amen yerine :loop_garzulu çalmamızı sağlıyor. Değişkenlerin büyülü özelliği sayesinde birden fazla yerde çalan sample ı değiştirmiş oluyoruz.
+
+## Sonuçları Yakalamak
+
+Sonunda, bir şeylerin sonucunu yakalarken değişkenleri kullanma konusunda bir motivasyonumuz var. Örneğin bir sample süresince bir şeyler yapmak isteyebilirsiniz:
 ```
 sd = sample_duration(:loop_amen)Copy
 ```
-We can now use sd anywhere we need the duration of the :loop_amen sample.
+Şimdi sd yi :loop_amen sample ını kullanmak istediğimiz yer yere yazabiliriz.
 
-Perhaps more importantly, a variable allows us to capture the result of a call to play or sample:
+Hatta , değişken bizim play ya da sample çağrılarının sonucunu yakalamımızı sağlar:
 ```
 s = play 50, release: 8Copy
 ```
-Now we have caught and remembered s as a variable, which allows us to control the synth as it is running:
+
+s bir değişken olarak elimizde ki bu da bize synth yürütülürken onu kontrol etmemizi sağlar:
+
 ```
 s = play 50, release: 8
 sleep 2
 control s, note: 62Copy
 ```
-We’ll look into controlling synths in more detail in a later section.
 
-### Warning: Variables and Threads
+Daha sonraki bölümlerde synthleri kontrol etmeye daha detaylı bakacağız.
+
+### Uyarı: Değişkenler ve Threadler 
+
 Whilst variables are great for giving things names and capturing the results of things, it is important to know that they should typically only be used locally within a thread. For example, don’t do this:
 ```
 a = (ring 6, 5, 4, 3, 2, 1)
@@ -162,12 +170,13 @@ However, sometimes we do want to share things across threads. For example, the c
 
 Once you have become sufficiently advanced live coding with a number of functions and threads simultaneously, you’ve probably noticed that it’s pretty easy to make a mistake in one of the threads which kills it. That’s no big deal, because you can easily restart the thread by hitting Run. However, when you restart the thread it is now out of time with the original threads.
 
-### Inherited Time
+### Kalıtsal Zaman
 As we discussed earlier, new threads created with in_thread inherit all of the settings from the parent thread. This includes the current time. This means that threads are always in time with each other when started simultaneously.
 
 However, when you start a thread on its own it starts with its own time which is unlikely to be in sync with any of the other currently running threads.
 
-### Cue and Sync
+### Çağrı ve Zaman Uyumu
+
 Sonic Pi provides a solution to this problem with the functions cue and sync.
 
 cue allows us to send out heartbeat messages to all other threads. By default the other threads aren’t interested and ignore these heartbeat messages. However, you can easily register interest with the sync function.
@@ -212,7 +221,7 @@ endCopy
 ```
 That naughty sleep call would typically make the second thread out of phase with the first. However, as we’re using cue and sync, we automatically sync the threads bypassing any accidental timing offsets.
 
-### Cue Names
+### Çağrı İsimleri
 You are free to use whatever name you’d like for your cue messages - not just :tick. You just need to ensure that any other threads are syncing on the correct name - otherwise they’ll be waiting for ever (or at least until you press the Stop button).
 
 Let’s play with a few cue names:
