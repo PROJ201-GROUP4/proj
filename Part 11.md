@@ -90,7 +90,49 @@ Bunlar gibi daha birçok mesaj var.
 ### MIDI Cihazına Bağlanma
 Bir harici cihaza MIDI mesaji iletmek için, önce onu bağlamalıyız.  Eğer USB bağlıyorsanız, gönderdiğiniz cihazı bağlamak da ayni aşamayla gerçekleşir. Aynı zamanda, eğer klasik DIN bağlantısı kullanıyorsanız, bilgisayarınızın MIDI out portuna bağladığınızdan emin olun. Burada MIDI cihazının listelendiğini görmelisiniz
 
-### MIDI Olaylarını Gönderme
+### MIDI Cihazı Seçme
+Otomatik olarak Sonic Pi bütün bağlanan cihazlara her bir MIDI cihazını yollayacak. Bu çalışma sürecini kolaylaştırıyor. Aynı zamanda, cihazınız bazen MIDI kanallarına farklı davranabilir. Bazen ayno anda birden fazla cihaz bağlamak istersiniz. Daha karışık düzenlerde, hangi cihazın hangi mesajı alacağı konusunda seçici olabilirsiniz.
+
+Hangi cihaza yollayacağınızı port: opt ile belirtirsiniz:
+
+```
+midi_note_on :e3, port: "moog_minitaur"
+```
+
+We can also specify which channel to send to using the channel: opt (using a value in the range 1-16):
+
+Hangi kanala yollayacağınızı ise channel: ile:
+```
+midi_note_on :e3, channel: 3
+
+```
+
+Tabi ki ikisini aynanda da kullanabilirsiniz: 
+
+```
+midi_note_on :e3, port: "moog_minitaur", channel: 5
+```
+
+### MIDI STUDYO
+
+Son olarak, yapacağımız bir diğer eğlenceli şey ise, ses outputunu MIDI’a bağlamak.  midi_* fns kodu ile synthlerinizi kontrol edip, live_audio ve FX kullanarak sesi yönetebilirsiniz:
+ 
+ ```
+ with_fx :reverb, room: 1 do
+  live_audio :moog
+end
+
+live_loop :moog_trigger do
+  use_real_time
+  midi (octs :e1, 3).tick, sustain: 0.1
+  sleep 0.125
+end
+ ```
+
+
+
+
+
 
 
 
