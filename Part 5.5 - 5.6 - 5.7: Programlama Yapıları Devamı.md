@@ -81,7 +81,7 @@ sleep sample_duration(:loop_amen)Copy
 Tabii ki bu da kodun amacını gösteren güzel bir iletişim yöntemi.
 
 ### Tekrarları Yönetmek
-Gnelleikle kodunuzda çok fazla tekrar görürsünüz ve tekrar eden kodun içerisinden bir şeyi değiştirmek istediğinizde çok fazla yerde değişim yapmak zorunda kalırsınız. Aşağıdaki koda bir bakalım:
+Genellikle kodunuzda çok fazla tekrar görürsünüz ve tekrar eden kodun içerisinden bir şeyi değiştirmek istediğinizde çok fazla yerde değişim yapmak zorunda kalırsınız. Aşağıdaki koda bir bakalım:
 ```
 sample :loop_amen
 sleep sample_duration(:loop_amen)
@@ -147,10 +147,7 @@ live_loop :sorted do
   puts "sorted: ", a
 endCopy
 ```
-In the above example we assign a ring of numbers to a variable a and then used it within two separate live_loops. In the first live loop every 0.5s we sort the ring (to (ring 1, 2, 3, 4, 5, 6)) and then print it out to the log. If you run the code, you’ll find that the printed list is not always sorted!. This may surprise you - especially that sometimes the list is printed as sorted, and sometimes it is not. This is called non-deterministic behaviour and is the result of a rather nasty problem called a race-condition. The problem is due to the fact that the second live loop is also manipulating the list (in this case shuffling it) and by the time the list is printed, sometimes it has just been sorted and sometimes it has just been shuffled. Both live loops are racing to do something different to the same variable and every time round a different loop ‘wins’.
-
-Yukarıdaki örnekte
-
+Yukarıdaki örnekte a değişkenine bir sayı halkası atarız ve sonra iki ayrı live_loops içinde kullanırız. Her 0,5 saniyede ilk canlı döngüde, halkayı sıralar (((1, 2, 3, 4, 5, 6))) ve ardından günlüğe yazdırırız. Kodu çalıştırırsanız, yazdırılan listenin her zaman sıralanmadığını görürsünüz. Bu sizi şaşırtabilir - özellikle de bazen liste sıralı olarak basılır, bazen de değil. Buna deterministik olmayan davranış denir ve yarış koşulu olarak adlandırılan oldukça kötü bir sorunun sonucudur. Sorun, ikinci canlı döngünün de listeyi (bu durumda karıştırmak) manipüle etmesi ve listenin yazdırıldığı zamana göre, bazen sadece sıralandı ve bazen karıştırıldı. Her iki canlı döngü de aynı değişkenden farklı bir şey yapmak için yarışıyor ve her seferinde farklı bir döngüde 'kazanıyor'.
 
 Bunun iki çözümü var. Öncellikle, çoklu looplarda ve treadlerde aynı değişkeni kullanmayın. Örneğin her loopun kendine özel değişkeni varsa kod her zaman sıralı bir liste yazdırıcaktır:
 
@@ -172,22 +169,22 @@ Ama, bazen treadler arasında bazı şeyleri paylaşmak isteyebiliriz. Örneğin
 
 ## 5.7 Thread Senkronizasyonu
 
-Once you have become sufficiently advanced live coding with a number of functions and threads simultaneously, you’ve probably noticed that it’s pretty easy to make a mistake in one of the threads which kills it. That’s no big deal, because you can easily restart the thread by hitting Run. However, when you restart the thread it is now out of time with the original threads.
+Yeterince gelişmiş bir anda bir dizi fonksiyon ve iş parçacığı ile canlı kodlama yaptıktan sonra, onu öldüren iş parçacıklarından birinde hata yapmanın oldukça kolay olduğunu fark etmişsinizdir. Bu hiç önemli değil çünkü Run'ı tıklatarak iş parçacığını kolayca başlatabilirsiniz. Ancak, iş parçacığını yeniden başlattığınızda, şimdi özgün iş parçacıkları ile zaman aşımına uğradı.
 
 ### Kalıtsal Zaman
-As we discussed earlier, new threads created with in_thread inherit all of the settings from the parent thread. This includes the current time. This means that threads are always in time with each other when started simultaneously.
+Daha önce tartıştığımız gibi, in_thread ile oluşturulan yeni konular, ana dizinin tüm ayarlarını devralır. Bu şimdiki zamanı içerir. Bu, aynı anda başlatıldığında, ipliklerin her zaman birbirleriyle zaman içinde olduğu anlamına gelir.
 
-However, when you start a thread on its own it starts with its own time which is unlikely to be in sync with any of the other currently running threads.
+Ancak, bir iş parçacığını kendi başına başlattığınızda, şu anda çalışan diğer iş parçacıklarından biriyle eşit olması muhtemel olmayan kendi zamanıyla başlar.
 
 ### Çağrı ve Zaman Uyumu
 
-Sonic Pi provides a solution to this problem with the functions cue and sync.
+Sonic Pi, cue ve sync işlevleriyle bu soruna bir çözüm sunar.
 
-cue allows us to send out heartbeat messages to all other threads. By default the other threads aren’t interested and ignore these heartbeat messages. However, you can easily register interest with the sync function.
+cue, diğer tüm konulara kalp atışı mesajları göndermemizi sağlar. Varsayılan olarak, diğer başlıklar ilgilenmez ve bu kalp atışı iletilerini görmezden gelir. Ancak, senkronizasyon işleviyle kolayca ilgi çekebilirsiniz.
 
-The important thing to be aware of is that sync is similar to sleep in that it stops the current thread from doing anything for a period of time. However, with sleep you specify how long you want to wait while with sync you don’t know how long you will wait - as sync waits for the next cue from another thread which may be soon or a long time away.
+Dikkat edilmesi gereken en önemli şey, senkronizasyonun, mevcut iş parçacığını bir süre boyunca herhangi bir şey yapmasını engellediği için uykuya benzer olmasıdır. Ancak, uyku ile ne kadar süre bekleyeceğinizi, ne kadar süre bekleyeceğinizi bilemeyeceğinizi, ne kadar süre bekleyeceğinizi bilmiyorsunuz - eşitleme, yakında veya uzun bir süre uzakta olabilecek başka bir diziden gelecek olan ipucunu bekler.
 
-Let’s explore this in a little more detail:
+Bunu biraz daha ayrıntılı olarak inceleyelim:
 ```
 in_thread do
   loop do
@@ -203,9 +200,9 @@ in_thread do
   end
 endCopy
 ```
-Here we have two threads - one acting like a metronome, not playing any sounds but sending out :tick heartbeat messages every beat. The second thread is synchronising on tick messages and when it receives one it inherits the time of the cue thread and continues running.
+Burada iki tane iş parçacığımız var - biri metronom gibi davranıyor, ses çalmıyor, ancak dışarı atıyor: her atışı kalp atışı mesajlarını işaretleyin. İkinci iş parçacığı kene iletilerinde eşitlenir ve bir ileti aldığında işaret iş parçacığının zamanını devralır ve çalışmaya devam eder.
 
-As a result, we will hear the :drum_heavy_kick sample exactly when the other thread sends the :tick message, even if the two threads didn’t start their execution at the same time:
+Sonuç olarak, iki iş parçacığı aynı anda yürütmeye başlamamış olsa bile, tam olarak diğer iş parçacığı şunları gönderdiğinde: drum_heavy_kick örneğini duyacağız:
 ```
 in_thread do
   loop do
@@ -223,12 +220,13 @@ in_thread do
   end
 endCopy
 ```
-That naughty sleep call would typically make the second thread out of phase with the first. However, as we’re using cue and sync, we automatically sync the threads bypassing any accidental timing offsets.
+Bu yaramaz uyku çağrısı tipik olarak ikinci ipliği birinci ile faz dışı hale getirir. Ancak, cue ve sync kullandığımızdan, herhangi bir yanlışlıkla zamanlama ofsetini atlayarak konuları otomatik olarak senkronize ediyoruz.
 
 ### Çağrı İsimleri
-You are free to use whatever name you’d like for your cue messages - not just :tick. You just need to ensure that any other threads are syncing on the correct name - otherwise they’ll be waiting for ever (or at least until you press the Stop button).
 
-Let’s play with a few cue names:
+İpucu iletileriniz için istediğiniz adı kullanmakta özgürsünüz - yalnızca: işaretleyin. Başka herhangi bir iş parçacığının doğru adla eşitlendiğinden emin olmanız gerekir - aksi halde her zaman beklerler (veya en azından Durdur düğmesine basana kadar).
+
+Birkaç çağrı adı ile oynayalım:
 ```
 in_thread do
   loop do
@@ -258,6 +256,6 @@ in_thread do
   end
 endCopy
 ```
-Here we have a main cue loop which is randomly sending one of the heartbeat names :foo, :bar or :baz. We then also have three loop threads syncing on each of those names independently and then playing a different sample. The net effect is that we hear a sound every 0.5 beats as each of the sync threads is randomly synced with the cue thread and plays its sample.
+Burada rastgele kalp atışı adlarından birini gönderen bir ana işaret döngüsü var: foo,: bar veya: baz. Daha sonra, bu adların her biri üzerinde bağımsız olarak eşitlenen ve sonra farklı bir numuneyi çalan üç döngü parçamız var. Net etki, senkronizasyon ipliklerinin her biri işaret ipliği ile rastgele senkronize edildiği ve örneğini oynattığı için her 0.5 atımda bir ses duymamızdır.
 
-This of course also works if you order the threads in reverse as the sync threads will simply sit and wait for the next cue
+Bu, aynı zamanda, eğer iş parçacığı ters sırayla sıralanırsa, eşitleme iş parçacıkları basitçe oturacak ve bir sonraki işaret için bekleyecektir.
