@@ -132,7 +132,7 @@ Daha sonraki bölümlerde synthleri kontrol etmeye daha detaylı bakacağız.
 
 ### Uyarı: Değişkenler ve Threadler 
 
-Whilst variables are great for giving things names and capturing the results of things, it is important to know that they should typically only be used locally within a thread. For example, don’t do this:
+Her ne kadar değişkenler bir şeylere isim vermek için ve bir şeylerin sonucunu yakalamak için kullanışlı da olsa threadlerde local bir şekilde  kullanılması gerektiklerini unutmamak önemlidir. Örneğin, bunu yapmayın:
 ```
 a = (ring 6, 5, 4, 3, 2, 1)
 
@@ -149,7 +149,11 @@ endCopy
 ```
 In the above example we assign a ring of numbers to a variable a and then used it within two separate live_loops. In the first live loop every 0.5s we sort the ring (to (ring 1, 2, 3, 4, 5, 6)) and then print it out to the log. If you run the code, you’ll find that the printed list is not always sorted!. This may surprise you - especially that sometimes the list is printed as sorted, and sometimes it is not. This is called non-deterministic behaviour and is the result of a rather nasty problem called a race-condition. The problem is due to the fact that the second live loop is also manipulating the list (in this case shuffling it) and by the time the list is printed, sometimes it has just been sorted and sometimes it has just been shuffled. Both live loops are racing to do something different to the same variable and every time round a different loop ‘wins’.
 
-There are two solutions to this. Firstly, don’t use the same variable in multiple live loops or threads. For example, the following code will always print a sorted list as each live loop has its own separate variable:
+Yukarıdaki örnekte
+
+
+Bunun iki çözümü var. Öncellikle, çoklu looplarda ve treadlerde aynı değişkeni kullanmayın. Örneğin her loopun kendine özel değişkeni varsa kod her zaman sıralı bir liste yazdırıcaktır:
+
 ```
 live_loop :shuffled do
   a = (ring 6, 5, 4, 3, 2, 1)
@@ -164,7 +168,7 @@ live_loop :sorted do
   puts "sorted: ", a
 endCopy
 ```
-However, sometimes we do want to share things across threads. For example, the current key, BPM, synth etc. In these cases, the solution is to use Sonic Pi’s special thread-safe state system via the fns get and set. This is discussed later on in section 10.
+Ama, bazen treadler arasında bazı şeyleri paylaşmak isteyebiliriz. Örneğin current key, BPM, synth vb. Bu durumlarda, Sonic Pi yın güvenli thread durum sistemini çözüm olarak kullanabiliriz. Bu konu 10. bölümde tartışılıcak.
 
 ## 5.7 Thread Senkronizasyonu
 
