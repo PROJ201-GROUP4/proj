@@ -52,35 +52,36 @@ Bir şeyler için isim yaratmak, yazdığımız kod için yapabiliceğimiz kulla
 sample_name = :loop_amenCopy
 ```
 
-Here, we’ve ‘remembered’ the symbol :loop_amen in the variable sample_name. We can now use sample_name everywhere we might have used :loop_amen. For example:
+Şimdi, sample_name değişkenini yazdığımız zaman :loop_amen sembolünü hatırlıyoruz. Bundan sonra :loop_amen i kulanmak istediğimizde sample_name değişkenini kullanabiliriz. Örneğin:
 
 ```
 sample_name = :loop_amen
 sample sample_nameCopy
 ```
-There are three main reasons for using variables in Sonic Pi: communicating meaning, managing repetition and capturing the results of things.
+Sonic Pi da değişkenleri kullanmamızın üç temel sebebi var: iletişimin anlamı, tekrarları yönetmek ve bir şeylerin sonucunu yakalamak.
 
-## Communicating Meaning
+## İletişimin Anlamı
 
-When you write code it’s easy to just think you’re telling the computer how to do stuff - as long as the computer understands it’s OK. However, it’s important to remember that it’s not just the computer that reads the code. Other people may read it too and try to understand what’s going on. Also, you’re likely to read your own code in the future and try to understand what’s going on. Although it might seem obvious to you now - it might not be so obvious to others or even your future self!
+Kod yazdığınız zaman bilgisayara bir şeyleri nasıl yapması gerektiğini söylemeyi düşünmek kolaydır. ( Bilgisayar anladığı sürece sıkıntı yok.) Ama kodu okuyanın sadece bilgisayar olmadığını hatırlamamız gerekiyor. İnsanlarda bu kodu okuyabilir ve kodun niye yazıldığını anlamaya çalışabilir. Ayrıca sizde yazdığınız kodu daha sonradan tekrar okumak isteyebilirsiniz ve kodu hangi amaçla yazdığınızı anlamak isteyebilirsiniz. Size kodun amacı çok bariz gelse bile diğer insanlar için hatta ilerideki siz için bilr kafa karıştırıcı olabilir.
 
-One way to help others understand what your code is doing is to write comments (as we saw in a previous section). Another is to use meaningful variable names. Look at this code:
+Başkalarının okurken kodunuzu anlamasını sağlayacak bir diğer yöntem ise yorum yazmak. Diğer bir yöntem ise anlamlı değişken isimleri kullanmak. Şu örneğe bir bakın:`
 ```
 sleep 1.7533Copy
 ```
-Why does it use the number 1.7533? Where did this number come from? What does it mean? However, look at this code:
+Neden 1.7533 sayısını kullandık? Bu sayı nerden geldi? Ne demek? Aşağıdaki koda bakalım:
+
 ```
 loop_amen_duration = 1.7533
 sleep loop_amen_durationCopy
 ```
-Now, it’s much clearer what 1.7533 means: it’s the duration of the sample :loop_amen! Of course, you might say why not simply write:
+Şimdi neden 1.7533 olduğunu daha iyi anlayabiliyoruz: Bu sample :loop_amen in süresi! Tabii ki niye basit bir şekilde yazmadığımızı sorabilirsiniz:
 ```
 sleep sample_duration(:loop_amen)Copy
 ```
-Which, of course, is a very nice way of communicating the intent of the code.
+Tabii ki bu da kodun amacını gösteren güzel bir iletişim yöntemi.
 
-### Managing Repetition
-Often you see a lot of repetition in your code and when you want to change things, you have to change it in a lot of places. Take a look at this code:
+### Tekrarları Yönetmek
+Gnelleikle kodunuzda çok fazla tekrar görürsünüz ve tekrar eden kodun içerisinden bir şeyi değiştirmek istediğinizde çok fazla yerde değişim yapmak zorunda kalırsınız. Aşağıdaki koda bir bakalım:
 ```
 sample :loop_amen
 sleep sample_duration(:loop_amen)
