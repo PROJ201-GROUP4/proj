@@ -47,7 +47,38 @@ live_loop :midi_piano do
 end
 ```
 
-Aşağıda bir takım problemler var. Öncelikle, basit bir sonsuz bir live_döngümüz var.
+Aşağıda bir takım problemler var. Öncelikle, do end arasında bir sonsuz bir live_döngümüz var. Bir Diğeri ise, bir sonraki eşleşen zaman durumunu beklemek için sync komutunu çağırıyoruz. Aradığımız MIDI mesajini temsil eden bir string kullanıyoruz. Fark ettiniz mi? Bu uzun string size Sonic Pi tarafından sağlandı, böylece siz tek tek yazmak zorunda kalmadınız. Olayda, her MIDI notu için iki değer var yani ve bu iki değere note ve velocity atıyoruz. Son olarak, :piano syntini tetikliyoruz.
+
+Şimdi siz deneyin, kodu yazın ve synci sizin MIDI cihazınıza göre bir kelimeyle eşleştirin. Çalışan bir piyanonuz oldu. Birkaç problem daha var: klavyeye ne kadar sert basarsanız basın, notaların hepsi aynı yükseklikte. HIZ MIDI  değerini ve bunu yüksekliğe çevirerek kullanarak bunu düzeltebilirsiniz. Verilen mıdı ın değeri 0 ile 127 arasında, bu sayıyı 127 ile bölerek 0 ile 1 ‘e çevirin:
+
+```
+ive_loop :midi_piano do
+  note, velocity = sync "/midi/nanokey2_keyboard/0/1/note_on"
+  synth :piano, note: note, amp: velocity / 127.0
+end
+
+```
+### Bekleme Süresini Kaldırma
+Pause tuşunu kaldırmadan önce, neden orada olduğunu öğrenelim. Bütün synth ve Fx leri CPU'da tutmak için Sonic Pi 0.5 saniyelik bir default yaratır. Bu 0.5 lik gecikme :piano synthimize eklenir. Ayrıca, bu sadece play ve sleep ile oluşturulmuş kodları etkiler. Bu durumda, aslında harici MIDI cihazını kulllanarak :piano yu etkileriz bu nedenle Sonic Pi in bixim için zamanlamayı yapmasını istemeyiz. Use_real_time komutunu kullanarak, bu gecikme komutunu kapatabiliriz.
+
+```
+live_loop :midi_piano do
+  use_real_time
+  note, velocity = sync "/midi/nanokey2_keyboard/0/1/note_on"
+  synth :piano, note: note, amp: velocity / 127.0
+end
+
+```
+
+### Değerleri Almak
+Son olarak, MIDI olayları doğrudan zaman durumuna geçtiğinden, son görülen değer için get komutunu da kullanabiliriz. Bu, eğer geri verilecek değer bulunamazsa mevcut threadi engellemez ve nil return eder. Herhangi bir zamandaki Herhangi bir threadi çağırmak içi get komutunu kullandığımızı hatırlayalım. Ayrıca time_warp komutu ile geçmiş olayları da çağırabiliriz.
+
+### Sıra Sizde
+Herhangi bir MIDI Cihazından istedğiniz değeri almak için sync ve get komutlarını kullanabilirsiniz. MIDI cihazının ne yapacağına da siz karar verin.
+
+## 11.2 MIDI Out
+
+
 
 
 
