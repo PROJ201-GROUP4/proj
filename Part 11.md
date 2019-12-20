@@ -13,11 +13,11 @@ Bir kere kodu müziğe çevirmede uzmanlaşınca, sırada ne var diye merak eder
 
 Bu bölümde MIDI controller’ı Sonic Pi’a ses kontrolu için bilgi göndermek için nasıl kullanabileceğimizi öğreneceğiz. Haydi bir MIDI controller kapın!
 
-###M IDI CONTROLLERI BAĞLAMAK
+### MIDI CONTROLLERI BAĞLAMAK
 
 Harici MIDI’dan Sonic Pi’a bilgi almak için öncelikle onu bilgisayara bağlamalıyız, tabiki bunu USB bağlantısıyla yapacağız. Bağladıktan sonra, Sonic Pi’ı indirin ve IO bölümüne bir göz atın. Eğer cihazınız çıkmıyorsa, RESET MIDI butonuna basın ve bakın çıkıyor mu diye.
  
- ## MIDI Eventlerini Almak
+## MIDI Eventlerini Almak
  Cihazınız bağlandığında, Sonic Pi otomatik olarak eventleri alıyor olacak. Kendiniz de görebilirsiniz. Göremiyorsanız Preferences->Editor->Show & Hide ‘a girip Show cue log tuşunu açmalısınız. Çıkacak şey:
 
 ```
@@ -76,7 +76,21 @@ Son olarak, MIDI olayları doğrudan zaman durumuna geçtiğinden, son görülen
 ### Sıra Sizde
 Herhangi bir MIDI Cihazından istedğiniz değeri almak için sync ve get komutlarını kullanabilirsiniz. MIDI cihazının ne yapacağına da siz karar verin.
 
-## 11.2 MIDI Out
+## 11.2 MIDI OUT
+Ek olarak, alınılan MIDI olaylarının yanında, harici donanım synth, klavye ve diğer cihazları kontrol etmek için de MIDI olaylarını gönderebiliriz.Sonic Pi aşağıdaki gibi mesajlar sağlar.
+
+Nota - midi_note_on
+Note yok - midi_note_off
+Değişikliği kontrol etme - midi_cc
+Pitch bend - midi_pitch_bend
+Clock ticks - midi_clock_tick
+
+Bunlar gibi daha birçok mesaj var.
+
+### MIDI Cihazına Bağlanma
+Bir harici cihaza MIDI mesaji iletmek için, önce onu bağlamalıyız.  Eğer USB bağlıyorsanız, gönderdiğiniz cihazı bağlamak da ayni aşamayla gerçekleşir. Aynı zamanda, eğer klasik DIN bağlantısı kullanıyorsanız, bilgisayarınızın MIDI out portuna bağladığınızdan emin olun. Burada MIDI cihazının listelendiğini görmelisiniz
+
+### MIDI Olaylarını Gönderme
 
 
 
